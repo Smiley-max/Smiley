@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smiley Generator</title>
+    <style>
+        .smiley {
+            font-size: 100px;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="smiley" id="smiley">🙂</div>
+    <button class="btn" onclick="generateSmiley()">Generate Smiley</button>
+
+    <script>
+        function generateSmiley() {
+            const smiles = ["😊", "😄", "😁", "😃", "🙂"];
+            const randomIndex = Math.floor(Math.random() * smiles.length);
+            document.getElementById("smiley").textContent = smiles[randomIndex];
+        }
+    </script>
+</body>
+</html>
