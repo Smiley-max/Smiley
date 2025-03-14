@@ -6,6 +6,6 @@ def emoji_generator():
         "😡", "🤗", "😢", "🙃", "🥳", "😜", "😆", "🤪", "😏", "😻"
     ]
     selected_emoji = random.choice(emojis)
-    print("Din tilfældige emoji er:", selected_emoji)
+    print("Your random emoji is:", selected_emoji)
 
 emoji_generator()
