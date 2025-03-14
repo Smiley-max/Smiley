@@ -1,0 +1,72 @@
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
+#include <iostream>
+
+int main()
+{
+    // Create a window
+    sf::RenderWindow window(sf::VideoMode(400, 300), "Smiley Generator");
+
+    // Create a font for the text
+    sf::Font font;
+    if (!font.loadFromFile("arial.ttf")) {
+        std::cout << "Failed to load font!" << std::endl;
+        return -1;
+    }
+
+    // Create a text object for the smiley
+    sf::Text smileyText("(•‿•)", font, 50);
+    smileyText.setFillColor(sf::Color::Black);
+    smileyText.setPosition(150, 100);
+
+    // Create a button (just a simple rectangle)
+    sf::RectangleShape button(sf::Vector2f(200, 50));
+    button.setFillColor(sf::Color::Green);
+    button.setPosition(100, 200);
+
+    // Create text for the button
+    sf::Text buttonText("Show Smiley", font, 20);
+    buttonText.setFillColor(sf::Color::White);
+    buttonText.setPosition(150, 215);
+
+    // Main loop
+    bool smileyVisible = false;
+    while (window.isOpen())
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+
+            // Check for mouse click on the button
+            if (event.type == sf::Event::MouseButtonPressed)
+            {
+                if (event.mouseButton.button == sf::Mouse::Left)
+                {
+                    // Check if the button is clicked
+                    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+                    if (button.getGlobalBounds().contains(mousePos.x, mousePos.y))
+                    {
+                        smileyVisible = true; // Show the smiley
+                    }
+                }
+            }
+        }
+
+        window.clear(sf::Color::White); // Clear the screen
+
+        // Draw the button and the button text
+        window.draw(button);
+        window.draw(buttonText);
+
+        // If the smiley should be visible, draw it
+        if (smileyVisible) {
+            window.draw(smileyText);
+        }
+
+        window.display(); // Display everything on the screen
+    }
+
+    return 0;
+}
